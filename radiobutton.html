@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator</title>
+</head>
+<body>
+
+<h1>Calculator</h1>
+
+<form>
+  <input type="radio" name="calculation" value="factorial"> Factorial
+  <input type="radio" name="calculation" value="celsiusToFahrenheit"> Celsius to Fahrenheit
+  <input type="radio" name="calculation" value="fibonacci"> Fibonacci Series
+  <br><br>
+  <button onclick="performCalculation()">Calculate</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+  function performCalculation() {
+    const selectedCalculation = document.querySelector('input[name="calculation"]:checked').value;
+    const resultContainer = document.getElementById('result');
+    
+    switch (selectedCalculation) {
+      case 'factorial':
+        const num = parseInt(prompt('Enter a number for factorial calculation:'));
+        if (!isNaN(num)) {
+          const factorial = calculateFactorial(num);
+          resultContainer.textContent = `Factorial of ${num} is ${factorial}`;
+        } else {
+          resultContainer.textContent = 'Invalid input for factorial calculation.';
+        }
+        break;
+        
+      case 'celsiusToFahrenheit':
+        const celsius = parseFloat(prompt('Enter temperature in Celsius:'));
+        if (!isNaN(celsius)) {
+          const fahrenheit = convertCelsiusToFahrenheit(celsius);
+          resultContainer.textContent = `${celsius}°C is ${fahrenheit}°F`;
+        } else {
+          resultContainer.textContent = 'Invalid input for Celsius to Fahrenheit conversion.';
+        }
+        break;
+        
+      case 'fibonacci':
+        const terms = parseInt(prompt('Enter the number of Fibonacci terms:'));
+        if (!isNaN(terms)) {
+          const fibonacciSeries = generateFibonacciSeries(terms);
+          resultContainer.textContent = `Fibonacci Series: ${fibonacciSeries.join(', ')}`;
+        } else {
+          resultContainer.textContent = 'Invalid input for Fibonacci series.';
+        }
+        break;
+        
+      default:
+        resultContainer.textContent = 'Please select a calculation type.';
+    }
+  }
+
+  function calculateFactorial(num) {
+    if (num === 0 || num === 1) {
+      return 1;
+    }
+    return num * calculateFactorial(num - 1);
+  }
+
+  function convertCelsiusToFahrenheit(celsius) {
+    return (celsius * 9/5) + 32;
+  }
+
+  function generateFibonacciSeries(terms) {
+    const series = [0, 1];
+    for (let i = 2; i < terms; i++) {
+      series[i] = series[i - 1] + series[i - 2];
+    }
+    return series;
+  }
+</script>
+
+</body>
+</html>

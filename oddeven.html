@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Even/Odd Number Color</title>
+</head>
+<body>
+    <h1>Enter a number:</h1>
+    <input type="number" id="numberInput" onkeyup="checkNumber()">
+    <p id="result" style="color: black;"></p>
+
+    <script>
+        function checkNumber() {
+            var numberInput = document.getElementById("numberInput").value;
+            var resultElement = document.getElementById("result");
+            
+            if (numberInput % 2 === 0) {
+                resultElement.style.color = "red";
+                resultElement.textContent = "Even";
+            } else {
+                resultElement.style.color = "green";
+                resultElement.textContent = "Odd";
+            }
+        }
+    </script>
+</body>
+</html
